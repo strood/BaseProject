@@ -1,0 +1,8 @@
+<!-- EXAMPLE DATA, DELETE IF NOT NEEDED, AND REMOVE xml-loader from webpack.config -->
+<?xml version="1.0" encoding="UTF-8"?>
+<note>
+  <to>Mary</to>
+  <from>John</from>
+  <heading>Reminder</heading>
+  <body>Call Cindy on Tuesday</body>
+</note>
