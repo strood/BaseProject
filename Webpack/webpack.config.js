@@ -27,7 +27,7 @@ module.exports = {
   // NOTE: only good for dev, not prod
   devtool: 'inline-source-map',
 
-  // Alternative to using --wacth is install devserver.:
+  // Alternative to using --watch is install devServer.:
   // Below line tells webpack-dev-server to server files from /dist directory on
   //  localhost:8080
   //  run using webpack-dev-server --open or script in package.json $ npm run start
