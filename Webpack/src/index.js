@@ -24,7 +24,7 @@ function component() {
 
 	elementTwo.innerHTML = myName('Jesus');
 
-	btn.innerHTML = 'Click me to print to console!';
+	btn.innerHTML = '----Click me to print to console!-----';
 	btn.onclick = printMe;
 
 
@@ -34,8 +34,8 @@ function component() {
 	const myIcon = new Image();
 	myIcon.src = Icon;
 
-	elementTwo.appendChild(myIcon);
 	elementTwo.appendChild(btn);
+	elementTwo.appendChild(myIcon);
 
 	console.log(Data);
 	// return element;
