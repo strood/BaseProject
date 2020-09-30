@@ -1,5 +1,34 @@
 $body-color: grey;
 
+// Below shows example from more complete project, use this as a bundler.
+
+// // Import base vars
+// @import "./vars/vars";
+//
+// // External Components Styles
+// @import "@material/tab-bar/mdc-tab-bar";
+// @import "@material/tab-scroller/mdc-tab-scroller";
+// @import "@material/tab-indicator/mdc-tab-indicator";
+// @import "@material/tab/mdc-tab";
+//
+// // Foundation styles for base components and media queries
+// @import "./base";
+//
+// // Internal Component styles
+// @import "./vars/colors";
+// @import "./vars/tabColors";
+// @import "./components/logo";
+// @import "./components/hero";
+// @import "./components/footer";
+//
+//
+// // Page styles
+// @import "./pages/hours";
+// @import "./pages/manifesto";
+// @import "./pages/contact";
+// @import "./pages/menus";
+
+
 @font-face {
   font-family: 'MyFont';
   src: url('./test-font.woff2') format('woff2');
@@ -33,7 +62,7 @@ body {
 .hello {
   color: red;
   // Can also imclude an image in here and it willfind it
-  background: url('./img/icon.png');
+  background: url('../img/icon.png');
   // Using custom loaded font
   // font-family: 'MyFont';
   font-family: 'Kumbh Sans';

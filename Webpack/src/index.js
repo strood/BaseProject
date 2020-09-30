@@ -1,22 +1,18 @@
-import _ from 'lodash';
-import myName from './myName';
-import './style.scss';
-import Icon from './img/icon.png';
+"use strict";
 
-// Note: data visualization can utilize this
+// Import methods/functionality
+import Icon from './img/icon.png';
 import Data from './data/data.xml';
 
-// Only the default export of JSON modules can be used without warning.
-//
-// // No warning
-// import data from './data.json';
-//
-// // Warning shown, this is not allowed by the spec.
-// import { foo } from './data.json';
-
-
+import _ from 'lodash';
+import myName from './components/myName';
 import printMe from './print.js';
 
+// Import styles
+import './style/reset.scss';
+import './style/style.scss';
+
+// This is initial entry point into app. Everything starts below.
 function component() {
 	const element = document.createElement('div');
 	const elementTwo = document.createElement('div');

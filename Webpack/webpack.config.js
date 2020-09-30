@@ -14,12 +14,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   // Added only for dev! dont need below line:
   mode: 'development',
+  // mode: 'production', Uncomment when done dev
   // entry: './src/index.js', <----- old setup before print.js
   // adding src/print.js as a new entry point (print) and we'll change the output as
   // well, so that it will dynamically generate bundle names, based on the entry point names:
   entry: {
     app: './src/index.js',
-    print: './src/print.js',
+    // print: './src/print.js',
   },
 
   // Added a devtool to help with debugging, if error in bundle.js, it will show
@@ -44,7 +45,8 @@ module.exports = {
   // Not included prior to that in basic setup
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Output Management',
+      title: 'Example Webpack', // < Page title edited here
+      // favicon: ".src/img/asdfdfsdfsdf.ico", < ADD FAVICON HERE
     }),
     // Added for second plugin, the option Tells CleanWebpackPlugin that we don't
     // want to remove the index.html file after the incremental build triggered by watch
