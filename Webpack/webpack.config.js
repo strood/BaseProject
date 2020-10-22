@@ -45,7 +45,7 @@ module.exports = {
   // Not included prior to that in basic setup
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Example Webpack', // < Page title edited here
+      title: 'Todo List', // < Page title edited here
       // favicon: ".src/img/asdfdfsdfsdf.ico", < ADD FAVICON HERE
     }),
     // Added for second plugin, the option Tells CleanWebpackPlugin that we don't
@@ -94,7 +94,7 @@ module.exports = {
       },
       {
         // file loader for xml files to be added/loaded
-        test: /\.xml$/ ,
+        test: /\.xml$/,
         use: [
           'xml-loader',
         ],

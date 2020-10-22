@@ -1,7 +1,7 @@
 {
   "name": "Demo",
   "version": "1.0.0",
-  "description": "Webpack Base Example",
+  "description": "TOP Todo List",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -18,6 +18,9 @@
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^4.3.0",
     "csv-loader": "^3.0.3",
+    "eslint": "^7.10.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.1",
     "extract-loader": "^5.1.0",
     "file-loader": "^6.1.0",
     "html-webpack-plugin": "^4.4.1",
@@ -32,6 +35,10 @@
     "xml-loader": "^1.2.1"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
+    "date-fns": "^2.16.1",
+    "font-awesome-webpack": "0.0.5-beta.2",
+    "json-fn": "^1.1.1",
     "lodash": "^4.17.20"
   },
   "main": "webpack.config.js"
