@@ -5,7 +5,9 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = {
-  entry: './src/',
+  entry: {
+    app: './src/index.js',
+  },
   output: {
     filename: '[name].bundle.js',
     path: commonPaths.outputPath

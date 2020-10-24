@@ -39,6 +39,8 @@ NOTE: --save-dev to save just for dev, --save to save globally/sticks to project
 
   Where we have pointed to as our entry point in our app, this is specified in webpack.common.js
 
+  - Note: Links to style-sheets in /styles. Use normalize or base if you want to reset css.
+
 ## /build-utils
 
  This file will be where we organize our build configs based on environment, or see /addons for smaller plugins we may want to test on our code.
