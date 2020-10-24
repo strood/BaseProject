@@ -1,104 +1,40 @@
-// Default setup for alot of basic webpack functionality you may want to add to a
-// site, keep in mind that all these packages can be swapped out for a variety of
-//  others, including your own custom ones, this is just a default setup from
-//  webpack site https://webpack.js.org/guides/
+// Our base level config which we customize to allow greater flexibility in our
+// configs, by instead using different scripts and commands to call different
+// cofigs, therefore running in a diff environment we have set up within that config file.
 
-const path = require('path');
+// Our base config environment, and the merge method to combine it with others
+const commonConfig = require('./build-utils/webpack.common');
+const {
+  merge
+} = require('webpack-merge');
 
-// Added in output management, HtmlWebpackPlugin section.
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// Takes our addons and compose them onto package independently
+const addons = (addonsArg) => {
+  // Takes str or array, handles normalize here
+  let addons = []
+    .concat.apply([], [addonsArg]) //normalize array of addons (flatten)
+    .filter(Boolean); // If adons undefined, filter it out
 
-// Added to cleanup dist folder
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
-module.exports = {
-  // Added only for dev! dont need below line:
-  mode: 'development',
-  // mode: 'production', Uncomment when done dev
-  // entry: './src/index.js', <----- old setup before print.js
-  // adding src/print.js as a new entry point (print) and we'll change the output as
-  // well, so that it will dynamically generate bundle names, based on the entry point names:
-  entry: {
-    app: './src/index.js',
-    // print: './src/print.js',
-  },
-
-  // Added a devtool to help with debugging, if error in bundle.js, it will show
-  //  the specific file instea dof just the budle when showing error.
-  // NOTE: only good for dev, not prod
-  devtool: 'inline-source-map',
-
-  // Alternative to using --watch is install devServer.:
-  // Below line tells webpack-dev-server to server files from /dist directory on
-  //  localhost:8080
-  //  run using webpack-dev-server --open or script in package.json $ npm run start
-  devServer: {
-    contentBase: './dist',
-  },
-  // NOTE: webpack-dev-server doesn't write any output files after compiling. Instead,
-  // it keeps bundle files in memory and serves them as if they were real files
-  // mounted at the server's root path. If your page expects to find the bundle
-  // files on a different path, you can change this with the publicPath option in
-  // the dev server's configuration.
-
-  // Added plugins section on output management for HtmlWebpackPlugin
-  // Not included prior to that in basic setup
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Todo List', // < Page title edited here
-      // favicon: ".src/img/asdfdfsdfsdf.ico", < ADD FAVICON HERE
-    }),
-    // Added for second plugin, the option Tells CleanWebpackPlugin that we don't
-    // want to remove the index.html file after the incremental build triggered by watch
-    new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
-  ],
-  output: {
-    // filename: 'bundle.js', <--- changed when we added print.js
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
-  },
-  module: {
-    rules: [
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          // Creates `style` nodes from JS strings
-          'style-loader',
-          // Translates CSS into CommonJS
-          'css-loader',
-          // Compiles Sass to CSS
-          'sass-loader',
-        ],
-      },
-      {
-        // File loader to include images
-        test: /\.(png|svg|jpg|gif)$/,
-        use: [
-          'file-loader',
-        ],
-      },
-      {
-        // File loader to include fonts
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: [
-          'file-loader',
-        ],
-      },
-      {
-        // file loader for csv or tsv files to be added/loaded
-        test: /\.(csv|tsv)$/,
-        use: [
-          'csv-loader',
-        ],
-      },
-      {
-        // file loader for xml files to be added/loaded
-        test: /\.xml$/,
-        use: [
-          'xml-loader',
-        ],
-      },
-    ],
-  },
+  // Return list or individual addons we have flagged
+  return addons.map((addonName) => require(`./build-utils/addons/webpack.${addonName}.js`));
 };
+
+// Our config object
+module.exports = (env) => {
+  if (!env) {
+    throw new Error("You must pass an --env.env flad into your build for webpack to work");
+  }
+  console.log(env); // Log env vars we pass in
+  console.log(env.env);
+
+  // Grabs the env we are requesting...
+  const envConfig = require(`./build-utils/webpack.${env.env}.js`);
+
+  // ...compose it alongside the common config. We do this will webpack-merge
+  const mergedConfig = merge(commonConfig, envConfig, ...addons(env.addons));
+
+  console.log(mergedConfig); 
+
+  // return our fully merged config
+  return mergedConfig;
+}

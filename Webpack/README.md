@@ -1,52 +1,89 @@
-# Webpack Stuff
+# Webpack Frame
 
-Included are files that are useful examples or templates previously used in webpack
-projects. Follow the steps below to set up a webpack project, then use what you like.
+Included are files that are useful examples or templates previously used in webpack projects. Follow the steps below to set up a webpack project, then use what you like. The structure of this repo demos that of the webpack project once set up.  
+
+------------------------------------------------------------------
 
 ## Webpack Proj Setup
 
-- $ mkdir webpack-demo
-- $ cd webpack-demo
-- $ npm init _Answer Questions accordingly_
-- $ npm install webpack webpack-cli --save-dev
+-   $ mkdir webpack-demo
+-   $ cd webpack-demo
+-   $ npm init *_Answer Q's or default with -y flag_
+-   $ npm i webpack webpack-cli --save-dev
 
-This will get us basic framework, now we need to add
-config file to tell webpack how to bundle our code we will write.
+NOTE: --save-dev to save just for dev, --save to save globally/sticks to project. (Not required)
 
- ### Setup basic project structure
- ```
- webpack-demo
- - package.json
- |- webpack.config.js
- |- /dist
-   |- main.js
-   |- index.html
- |- /src
-   |- index.js
- |- /node_modules
-```
- - Copy webpack.config.js and customize to your needing, but this will establish basic
- bundle procedure and things to include. Below is basically what is setting it up.
+------------------------------------------------------------------
 
-```
-const path = require('path');
-module.exports = {
- entry: './src/index.js',
- output: {
-   filename: 'main.js',
-   path: path.resolve(__dirname, 'dist'),
- },
-};
-```
+## package.json
 
-Now we can run $ npm webpack or npx webpack --config webpack.config.js,
-The former will auto detect the config file latter explicit showing we can specifiy.
+ Included is info on our package, one key element is scripts, which we use for more complex npm commands.
 
-A configuration file allows far more flexibility than simple CLI usage. We can specify
-loader rules, plugins, resolve options and many other enhancements this way. See the
-configuration documentation to learn more
+-   Included is a general.package.json, this just shows a sample from an old project that can be used as guide when creating new projects. Various scripts or dependencies.
 
-We can use Scripts in package.json to automate various tasks we might do repeatedly
-while working on a project, see our package.json as a template and elaborate from there.
+## webpack.config.js
 
-Once integrated. npm run start for test server, npm run build to build into dist. 
+  Orchestrates the merging of our base config, and any additional configs we specifiy
+  through flags or scripts we run.
+
+  Basic use of config is specifying our Input -> Output, but we can also add things
+  like plugins, addons, or modules to further customize our build, or various
+  environments.
+
+-   Included is a general.webpack.config.js, this just shows a sample from an old
+    project that can be used as guide when creating new projects. However, it is all in
+    one file, so will abstract into our various build-utils based on what you need in
+    new proj, as doing in one file not as clean.
+
+## /src/index.js
+
+  Where we have pointed to as our entry point in our app, this is specified in webpack.common.js
+
+## /build-utils
+
+ This file will be where we organize our build configs based on environment, or see /addons for smaller plugins we may want to test on our code.
+
+- ### webpack.common.js
+
+  This serves as our base of commonly used plugins for projects, this is whats merges onto in webpack.config.js *see above^*
+
+- ### webpack.prod.js - webpack.dev.js
+
+  Prod and dev environment configs, set them up based on what you need in prod, and dev.
+  Or if needed in both, maybe common is best place.
+
+- ### common-paths.js
+
+  Just a nice life hack to make our paths be in one place for easy maintenance.
+
+- ### /addons
+
+  A place to add small snippits of plugins we may want to run our code against. Make a script and run a plugin, try out making your own plugins. makes it really easy to sample things without polluting your main common, dev and prod configs.
+
+### NOTE: Look up loader, plugins, ect for further config/info
+
+--------------------------------------------------------------------
+
+### Setup basic project structure
+
+    |webpack-demo
+    |- /dist <- output as specifed in webpack.common.js
+      |- main.bundle.js <- output from npm run build aka webpack.
+      |- index.html <- output from html-webpack-plugin
+      |- *More random files will apear here based on our config*
+    |- /src
+      |- index.js - app/webpack entry point.
+    |- /build-utils
+      |- /addons - area to add additional situational config/envs
+        |- webpack.bundleanalyze.js -demo addon example
+        |- webpack.firstplugin.js -demo plugin build area  
+      |- common-paths.js
+      |- webpack.common.js -Common webpack configs
+      |- webpack.dev.js -dev only config
+      |- webpack.prod.js -prog only config
+    |- webpack.config.js - Points to the build utils we are using
+    |- package.json - Scripts, dependencies and package info.
+
+    |- general.package.json -Demo package.json file w/ examples
+    |- general.webpack.config.js - Demo config examples
+    |- /node_modules - Our node modules
