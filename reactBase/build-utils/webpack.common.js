@@ -11,6 +11,7 @@ const config = {
   output: {
     filename: '[name].bundle.js',
     path: commonPaths.outputPath,
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -59,7 +60,10 @@ const config = {
       },
     ],
   },
-  plugins: [new webpack.ProgressPlugin(), new HtmlWebpackPlugin()],
+  plugins: [
+    new webpack.ProgressPlugin(),
+    new HtmlWebpackPlugin({ template: './src/index.html' }),
+  ],
 };
 
 module.exports = config;

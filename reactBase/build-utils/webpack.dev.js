@@ -1,5 +1,5 @@
 // Basiuc pattern to be passed if we call for dev environment
-const config ={
+const config = {
   mode: 'development',
   // webpack.js.org/configuration/devtool for further options
   devtool: 'inline-source-map', //Adds source map inline in our bundle.js file
@@ -16,9 +16,12 @@ const config ={
           // Compiles Sass to CSS
           'sass-loader',
         ],
-      }
-    ]
-  }
-}
+      },
+    ],
+  },
+  devServer: {
+    historyApiFallback: true,
+  },
+};
 
 module.exports = config;
