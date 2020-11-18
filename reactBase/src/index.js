@@ -1,4 +1,4 @@
-import './img/TribeLogo.png'; // Example test for our file-loader module in webpack.common
+// import './img/TribeLogo.png'; // Example test for our file-loader module in webpack.common
 // import './styles/base.css';
 import './styles/index.scss';
 // import './styles/reset.css'; //Delete this or normalize css
