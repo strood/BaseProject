@@ -78,6 +78,8 @@ This file will be where we organize our build configs based on environment, or s
       |- *More random files will apear here based on our config*
     |- /src
       |- index.js - app/webpack entry point.
+    |- /test
+    |- __mocks__/ <--mocks for unit tests
     |- /build-utils
       |- /addons - area to add additional situational config/envs
         |- webpack.bundleanalyze.js -demo addon example
