@@ -74,6 +74,7 @@ This file will be where we organize our build configs based on environment, or s
     |- /dist <- output as specifed in webpack.common.js
       |- main.bundle.js <- output from npm run build aka webpack.
       |- index.html <- output from html-webpack-plugin
+      |- _redirects <- For netlify hosting w/ react router, can delete if NA
       |- *More random files will apear here based on our config*
     |- /src
       |- index.js - app/webpack entry point.

@@ -1,4 +1,4 @@
-// Basiuc pattern to be passed if we call for dev environment
+// Basic pattern to be passed if we call for dev environment
 const config = {
   mode: 'development',
   // webpack.js.org/configuration/devtool for further options
